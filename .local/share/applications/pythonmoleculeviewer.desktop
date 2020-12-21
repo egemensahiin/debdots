@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.5.7
+Type=Application
+Name=Python Molecule Viewer
+Exec=/home/egemen/Docking/MGLTools-1.5.7/bin/pmv
+Terminal=false
+Icon=/home/egemen/.local/share/applications/myicons/adt.png
