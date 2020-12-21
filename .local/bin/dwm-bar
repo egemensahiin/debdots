@@ -1,0 +1,16 @@
+status() {
+		echo " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
+}
+
+while true; do
+		MEM=$(memory.sh)
+		BAT=$(battery.sh)
+		CPU=$(cpu_usage.pl)
+		VOL=$(volume.sh)
+		WIFI=$(wifi.sh)
+		BRI=$(brightness.sh)
+#		DATE=$(date +%d/%m/%Y)
+		TIME=$(date "+%d %b, %H:%M")
+		xsetroot -name "$(status)"
+		sleep 10
+done
