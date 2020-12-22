@@ -25,7 +25,7 @@ then
 	SYM=" "
 fi
 
-echo "${SYM} ${LEVEL}%"
+echo "${SYM}${LEVEL}%"
 # echo "BAT: ${LEVEL}%"
 
 exit 0
