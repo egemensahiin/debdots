@@ -1,7 +1,9 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-shopt -s autocd # Auto cd when write a valid directory name.
+
+# Auto cd when write a valid directory name.
+shopt -s autocd 
 
 # If not running interactively, don't do anything
 case $- in
@@ -9,10 +11,13 @@ case $- in
       *) return;;
 esac
 
-function nonzero_return() {
+# non zero status function for prompt
+nonzero_return() {
 	RETVAL=$?
 	[ $RETVAL -ne 0 ] && echo "[${RETVAL}]"
 }
+
+# extraction function from manjaro configuration
 ex ()
 {
   if [ -f $1 ] ; then
@@ -83,6 +88,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# i like my hostname symbolized with the distro icon
 case $HOSTNAME in
 		debian) host=" ";;
 		?) host=$HOSTNAME ;;
@@ -108,12 +114,12 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -143,6 +149,17 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# colorized man command. I don't remember it's source
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
 
 # --Exports
 export PATH="${PATH}:/home/egemen/.local/bin"
