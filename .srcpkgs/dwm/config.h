@@ -32,7 +32,8 @@ static const Rule rules[] = {
 	{ "Gimp",        		 NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Pavucontrol", 		 NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",     		 NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Zathura",     		 NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Zathura",     		 NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "discord",     		 NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "PyMOL",	     		 NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Mpv",	     		 NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "Code",	     		 NULL,       NULL,       1 << 2,       0,           -1 },
@@ -75,6 +76,7 @@ static const char *browsecmd[]  = { "primusrun", "firefox", NULL };
 static const char *audiocmd[]   = { "pavucontrol", NULL };
 static const char *gimpcmd[]    = { "primusrun", "gimp", NULL };
 static const char *locker[]     = { "/home/egemen/.local/bin/locker.sh", NULL };
+static const char *power[]      = { "/home/egemen/.local/bin/powermenu.sh", NULL };
 static const char *screenshot[] = { "/home/egemen/.local/bin/screenshot.sh", NULL };
 static const char *incvol[]     = { "amixer", "set", "Master", "5%+", "&&", "/home/egemen/.local/bin/dwm-bar", NULL  };
 static const char *decvol[]     = { "amixer", "set", "Master", "5%-", "&&", "/home/egemen/.local/bin/dwm-bar", NULL  };
@@ -100,7 +102,7 @@ static Key keys[] = {
 	{ 0,                XF86XK_AudioRaiseVolume, spawn,          {.v = incvol } },
 	{ 0,                XF86XK_MonBrightnessDown,spawn,          {.v = decbri } },
 	{ 0,                XF86XK_MonBrightnessUp,  spawn,          {.v = incbri } },
-	{ MODKEY,           XK_F12,                  spawn,          {.v = screenshot } },
+	{ 0,                XK_Print,                spawn,          {.v = screenshot } },
 	{ MODKEY,          	XK_Return,               spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask, XK_b,                    togglebar,      {0} },
 	{ MODKEY,           XK_j,                    focusstack,     {.i = +1 } },
@@ -139,7 +141,8 @@ static Key keys[] = {
 	TAGKEYS(            XK_7,                                    6)
 	TAGKEYS(            XK_8,                                    7)
 	TAGKEYS(            XK_9,                                    8)
-	{ MODKEY|ShiftMask, XK_e,                    quit,           {0} },
+	/*{ MODKEY|ShiftMask, XK_e,                    quit,           {0} },*/
+	{ MODKEY|ShiftMask, XK_e,                    spawn,          {.v = power} },
 };
 
 /* button definitions */
