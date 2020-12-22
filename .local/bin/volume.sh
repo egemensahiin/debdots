@@ -8,7 +8,7 @@ MUTED="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $6}' | cut -d ']' -
 
 if [[ $MUTED != "on" ]]
 then
-	echo ""
+	echo "  "
 else
 	if [[ $GETVOL -gt 70 ]]
 	then
@@ -16,12 +16,9 @@ else
 	elif [[ $GETVOL -ge 30 ]]
 	then
 		SYM=" "
-	elif [[ $GETVOL -gt 0 ]]
+	elif [[ $GETVOL -ge 0 ]]
 	then
 		SYM=" "
-	elif [[ $GETVOL -eq 0 ]]
-	then
-		SYM="0"
 	fi
 	echo "${SYM}${GETVOL}%"
 fi

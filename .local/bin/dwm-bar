@@ -1,5 +1,5 @@
 status() {
-		echo " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
+		echo " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
 }
 
 while true; do

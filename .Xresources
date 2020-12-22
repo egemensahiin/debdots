@@ -180,4 +180,4 @@ rofi.theme: gruvbox-dark
 rofi.show-icons: true
 rofi.icon-theme: "Solarized-Dark-Orange-Numix"
 rofi.fixed-num-lines: true
-rofi.font: Inconsolata Regular 13
+rofi.font: Inconsolata 13
