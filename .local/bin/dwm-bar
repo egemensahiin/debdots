@@ -1,16 +1,18 @@
+#!/bin/bash
 status() {
 		echo " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
 }
 
 while true; do
-		MEM=$(memory.sh)
-		BAT=$(battery.sh)
-		CPU=$(cpu_usage.pl)
-		VOL=$(volume.sh)
-		WIFI=$(wifi.sh)
-		BRI=$(brightness.sh)
-#		DATE=$(date +%d/%m/%Y)
+		MEM=$(/home/egemen/.local/bin/memory.sh)
+		BAT=$(/home/egemen/.local/bin/battery.sh)
+		CPU=$(/home/egemen/.local/bin/cpu_usage.pl)
+		VOL=$(/home/egemen/.local/bin/volume.sh)
+		WIFI=$(/home/egemen/.local/bin/wifi.sh)
+		BRI=$(/home/egemen/.local/bin/brightness.sh)
+		DATE=$(date +%d/%m/%Y)
 		TIME=$(date "+%d %b, %H:%M")
+#		xsetroot -name " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
 		xsetroot -name "$(status)"
 		sleep 10
 done
