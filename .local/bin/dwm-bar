@@ -10,6 +10,7 @@ while true; do
 		VOL=$(/home/egemen/.local/bin/volume.sh)
 		WIFI=$(/home/egemen/.local/bin/wifi.sh)
 		BRI=$(/home/egemen/.local/bin/brightness.sh)
+#		SPOT=$(/home/egemen/.local/bin/spotify.sh)
 		DATE=$(date +%d/%m/%Y)
 		TIME=$(date "+%d %b, %H:%M")
 #		xsetroot -name " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
