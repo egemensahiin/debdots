@@ -28,17 +28,18 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         		 instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",        		 NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "Pavucontrol", 		 NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",     		 NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Zathura",     		 NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "discord",     		 NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "PyMOL",	     		 NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Mpv",	     		 NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "Code",	     		 NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "VirtualBox Manager",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "mendeleydesktop",	 NULL,       NULL,       0,            1,           -1 },
+	/* class         			 instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",        			  NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "Pavucontrol", 			  NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",     			  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Zathura",     			  NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "discord",     			  NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "PyMOL",	     			  NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Mpv",	     			  NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "Code",	     			  NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "VirtualBox Manager", 	  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "libreoffice-startcenter",  NULL,       NULL,       1 << 5,       0,           -1 },
+	{ NULL,  					  NULL,       "spt",      1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -70,11 +71,13 @@ static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufon
 static const char *termcmd[]    = { "st", NULL };
 static const char *roficmd[]    = { "rofi", "-show", "drun", NULL };
 static const char *wroficmd[]   = { "/home/egemen/.local/bin/rofi_web.sh", NULL };
+static const char *yroficmd[]   = { "/home/egemen/.local/bin/rofi_ytb.sh", NULL };
 static const char *codecmd[]    = { "code", NULL };
 static const char *vimcmd[]     = { "st", "-e", "vim", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
 static const char *browsecmd[]  = { "primusrun", "firefox", NULL };
 static const char *audiocmd[]   = { "pavucontrol", NULL };
+static const char *officecmd[]  = { "libreoffice", NULL };
 static const char *gimpcmd[]    = { "primusrun", "gimp", NULL };
 static const char *locker[]     = { "/home/egemen/.local/bin/locker.sh", NULL };
 static const char *power[]      = { "/home/egemen/.local/bin/powermenu.sh", NULL };
@@ -90,6 +93,7 @@ static Key keys[] = {
 	/* modifier         key                      function        argument */
 	{ MODKEY,           XK_d,                    spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask, XK_d,                    spawn,          {.v = wroficmd } },
+	{ MODKEY,		    XK_y,                    spawn,          {.v = yroficmd } },
 	{ MODKEY,           XK_a,                    spawn,          {.v = audiocmd } },
 	{ MODKEY,           XK_g,                    spawn,          {.v = gimpcmd } },
 	{ MODKEY,           XK_b,                    spawn,          {.v = browsecmd } },
@@ -98,6 +102,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_c,                    spawn,          {.v = codecmd } },
 	{ MODKEY,           XK_x,                    spawn,          {.v = locker } },
 	{ MODKEY,           XK_o,                    spawn,          {.v = vboxcmd } },
+	{ MODKEY,           XK_n,                    spawn,          {.v = officecmd } },
 	{ 0,                XF86XK_AudioLowerVolume, spawn,          {.v = decvol } },
 	{ 0,                XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                XF86XK_AudioRaiseVolume, spawn,          {.v = incvol } },
@@ -126,9 +131,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, XK_space,                togglefloating, {0} },
 	{ MODKEY,           XK_0,                    view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask, XK_0,                    tag,            {.ui = ~0 } },
-	{ MODKEY,           XK_minus,                setgaps,        {.i = -1 } },
-	{ MODKEY,           XK_plus,                 setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask, XK_plus,                 setgaps,        {.i = 0  } },
+	{ MODKEY,           XK_KP_Subtract,          setgaps,        {.i = -1 } },
+	{ MODKEY,           XK_KP_Add,               setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask, XK_KP_Add,               setgaps,        {.i = 0  } },
 	{ MODKEY,           XK_comma,                focusmon,       {.i = -1 } },
 	{ MODKEY,           XK_period,               focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask, XK_comma,                tagmon,         {.i = -1 } },
