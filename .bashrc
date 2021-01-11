@@ -164,7 +164,6 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-
 # --Aliases
 # Aliases for some commands
 alias cp="cp -i"                          # confirm before overwriting something

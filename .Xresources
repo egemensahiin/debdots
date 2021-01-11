@@ -45,8 +45,8 @@ Xcursor.size:                     0
 
 ! soft contrast: *background: #32302f
 ! hard contrast: *background: #1d2021
-*background: 			color15
-*foreground:			color0 
+*background: 			color0
+*foreground:			color15
 ! Black + DarkGrey
 *color0:  				color0
 *color8:  				color8
@@ -71,7 +71,6 @@ Xcursor.size:                     0
 ! LightGrey + White
 *color7:  				color7
 *color15: 				color15
-
 
 !---SOLARIZED DARK---!
 
@@ -178,6 +177,5 @@ Xcursor.size:                     0
 rofi.modi: ssh,window,drun,run
 rofi.theme: gruvbox-dark
 rofi.show-icons: true
-rofi.icon-theme: "Solarized-Dark-Orange-Numix"
 rofi.fixed-num-lines: true
 rofi.font: Inconsolata 13
