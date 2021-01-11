@@ -51,10 +51,10 @@ gen_list() {
 
 main() {
   # Pass the list to rofi
-  platform=$( (gen_list) | rofi -dmenu -matching fuzzy -no-custom -location 0 -p "websearch" )
+  platform=$( (gen_list) | rofi -dmenu -matching fuzzy -lines 8 -no-custom -location 0 -p "websearch" )
 
   if [[ -n "$platform" ]]; then
-    query=$( (echo ) | rofi  -dmenu -matching fuzzy -location 0 -p "${platform} query" )
+    query=$( (echo ) | rofi  -dmenu -matching fuzzy -lines 0 -location 0 -p "${platform} query" )
 
     if [[ -n "$query" ]]; then
       url=${URLS[$platform]}$query

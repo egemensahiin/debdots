@@ -8,7 +8,7 @@ MUTED="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $6}' | cut -d ']' -
 
 if [[ $MUTED != "on" ]]
 then
-	echo "  "
+	echo " "
 else
 	if [[ $GETVOL -gt 70 ]]
 	then
