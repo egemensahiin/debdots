@@ -1,6 +1,6 @@
 #!/bin/bash
 status() {
-		echo " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
+		echo " ${SPO} ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
 }
 
 while true; do
@@ -10,6 +10,7 @@ while true; do
 		VOL=$(/home/egemen/.local/bin/volume.sh)
 		WIFI=$(/home/egemen/.local/bin/wifi.sh)
 		BRI=$(/home/egemen/.local/bin/brightness.sh)
+		SPO=$(/home/egemen/.local/bin/spotify.sh)
 #		SPOT=$(/home/egemen/.local/bin/spotify.sh)
 		DATE=$(date +%d/%m/%Y)
 		TIME=$(date "+%d %b, %H:%M")
