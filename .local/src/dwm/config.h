@@ -7,7 +7,7 @@ static const unsigned int gappx     = 8;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Inconsolata:size=10", "Font Awesome 5 Free Regular:size=10", "Font Awesome 5 Brands Regular:size=10", "Font Awesome 5 Free Solid:size=10" };
+static const char *fonts[]          = { "Inconsolata:size=10", "Font Awesome 5 Free Regular:size=10", "Font Awesome 5 Brands Regular:size=10", "Font Awesome 5 Free Solid:size=10", "Inconsolata Nerd Font:size=10" };
 static const char dmenufont[]       = "Inconsolata:size=10";
 static const char col_gray1[]       = "#282828";/*"#ebdbb2";*/
 static const char col_gray2[]       = "#d5c4a1";
@@ -29,17 +29,16 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         			 instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",        			  NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "Pavucontrol", 			  NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",     			  NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Zathura",     			  NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "discord",     			  NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "PyMOL",	     			  NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Mpv",	     			  NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "Code",	     			  NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "VirtualBox Manager", 	  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "libreoffice-startcenter",  NULL,       NULL,       1 << 5,       0,           -1 },
-	{ NULL,  					  NULL,       "spt",      1 << 3,       0,           -1 },
+	{ "Gimp",        			  NULL,       NULL,      	1 << 4,       0,           -1 },
+	{ "Pavucontrol", 			  NULL,       NULL,      	0,            1,           -1 },
+	{ "Firefox",     			  NULL,       NULL,      	1 << 1,       0,           -1 },
+	{ "discord",     			  NULL,       NULL,      	1 << 6,       0,           -1 },
+	{ "PyMOL",	     			  NULL,       NULL,      	1 << 7,       0,           -1 },
+	{ "Mpv",	     			  NULL,       NULL,      	1 << 4,       0,           -1 },
+	{ "VSCodium",     			  NULL,       NULL,      	1 << 2,       0,           -1 },
+	{ "VirtualBox Manager", 	  NULL,       NULL,			1 << 8,       0,           -1 },
+	{ "libreoffice-startcenter",  NULL,       NULL,			1 << 5,       0,           -1 },
+	{ NULL,  					  NULL,       "spotify-tui",1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -72,8 +71,9 @@ static const char *termcmd[]    = { "st", NULL };
 static const char *roficmd[]    = { "rofi", "-show", "drun", NULL };
 static const char *wroficmd[]   = { "/home/egemen/.local/bin/rofi_web.sh", NULL };
 static const char *yroficmd[]   = { "/home/egemen/.local/bin/rofi_ytb.sh", NULL };
-static const char *codecmd[]    = { "code", NULL };
+static const char *codecmd[]    = { "codium", NULL };
 static const char *vimcmd[]     = { "st", "-e", "vim", NULL };
+static const char *sptcmd[]     = { "st", "-e", "spotify-tui", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
 static const char *browsecmd[]  = { "primusrun", "firefox", NULL };
 static const char *audiocmd[]   = { "pavucontrol", NULL };
@@ -88,6 +88,7 @@ static const char *mutevol[]    = { "amixer", "-q", "set", "Master", "toggle", "
 static const char *incbri[]     = { "brightnessctl", "set", "10%+", "&&", "/home/egemen/.local/bin/dwm-bar", NULL };
 static const char *decbri[]     = { "brightnessctl", "--min-value=750", "set", "10%-", "/home/egemen/.local/bin/dwm-bar", NULL };
 static const char *vboxcmd[]    = { "virtualbox", NULL };
+static const char *playcmd[]    = { "playerctl", "--player=spotify,%any", "play-pause", NULL };
 
 static Key keys[] = {
 	/* modifier         key                      function        argument */
@@ -98,12 +99,14 @@ static Key keys[] = {
 	{ MODKEY,           XK_g,                    spawn,          {.v = gimpcmd } },
 	{ MODKEY,           XK_b,                    spawn,          {.v = browsecmd } },
 	{ MODKEY,           XK_v,                    spawn,          {.v = vimcmd } },
+	{ MODKEY,           XK_s,                    spawn,          {.v = sptcmd } },
 	{ MODKEY,           XK_r,                    spawn,          {.v = rangercmd } },
 	{ MODKEY,           XK_c,                    spawn,          {.v = codecmd } },
 	{ MODKEY,           XK_x,                    spawn,          {.v = locker } },
 	{ MODKEY,           XK_o,                    spawn,          {.v = vboxcmd } },
 	{ MODKEY,           XK_n,                    spawn,          {.v = officecmd } },
 	{ 0,                XF86XK_AudioLowerVolume, spawn,          {.v = decvol } },
+	{ 0,                XF86XK_AudioPlay, 		 spawn,          {.v = playcmd } },
 	{ 0,                XF86XK_AudioMute,        spawn,          {.v = mutevol } },
 	{ 0,                XF86XK_AudioRaiseVolume, spawn,          {.v = incvol } },
 	{ 0,                XF86XK_MonBrightnessDown,spawn,          {.v = decbri } },
