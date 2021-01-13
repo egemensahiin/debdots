@@ -3,7 +3,7 @@ declare -A CMDS
 CMDS=(
   [" shutdown"]="systemctl poweroff"
   ["鈴 suspend"]="systemctl suspend"
-  [" reboot"]="systemctl reboot"
+  ["敏 reboot"]="systemctl reboot"
   [" exit session"]="pkill dwm"
   [" lock screen"]="/home/egemen/.local/bin/locker.sh"
 #  [" quit menu"]="pkill rofi"
@@ -17,7 +17,7 @@ gen_list() {
 }
 
 main() {
-  power_menu=$( (gen_list) | rofi -dmenu -font "Inconsolata Nerd Font 13" -matching fuzzy -lines 5 -no-custom location 0 -p "power menu" )
+  power_menu=$( (gen_list) | rofi -dmenu -font "Inconsolata Nerd Font Regular 13" -matching fuzzy -lines 5 -no-custom location 0 -p "power menu" )
   if [[ -n "${power_menu}" ]]
   then
     eval "${CMDS[$power_menu]}"
