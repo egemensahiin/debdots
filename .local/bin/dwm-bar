@@ -1,20 +1,160 @@
 #!/bin/bash
-status() {
-		echo " ${SPO} ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
+
+datentime() {
+	echo $(date "+%d %b, %H:%M")
+}
+
+memoryusage() {
+total=$(free | grep Mem | awk '{print $2}')
+used=$(free | grep Mem | awk '{print $3}')
+buffCache=$(free | grep Mem | awk '{print $5}')
+totUsed=$((used + buffCache))
+echo "Total: $total
+Used:  $totUsed" | awk '
+/^Total:/ {
+  mem_total=$2
+}
+/^Used:/ {
+	mem_used=$2
+}
+END {
+total_m=mem_total/1024/1024
+used_m=mem_used/1024
+pct=0
+if (total_m > 0) {
+			pct=used_m/total_m*100
+		}
+if (used_m > 1200) {
+		used_m=used_m/1024
+		# full text
+		# printf("%.2fGiB/%.0fGiB (%.f%%)\n", used_m, total_m, pct)
+		printf("%.2fGiB/%.2fGiB\n", used_m, total_m)
+		# short text
+		# printf("%.f%%\n", pct)
+}
+else {	
+		# full text
+		# printf("%.0fMiB/%.0fGiB (%.f%%)\n", used_m, total_m, pct)
+		printf("%.0fMiB/%.2fGiB\n", used_m, total_m)
+		# short text
+		# printf("%.f%%\n", pct)
+}
+# color
+# if (pct > 90) {
+# 	print("#FF0000")
+# 	} 
+# else if (pct > 80) {
+# 	print("#FFAE00")
+# 	}
+# else if (pct > 70) {
+# 	print("#FFF600")
+# 	}
+}
+	'
+}
+
+cputemp() {
+	TEMP=$(acpi -t | awk '{print $4}')
+	[[ $(echo "$TEMP < 45" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP < 55 && $TEMP > 45" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP < 70 && $TEMP > 55" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP < 80 && $TEMP > 70" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP > 80" | bc) -eq 1 ]] && SYM=""
+	echo "${SYM} ${TEMP}°C"
+}
+
+cpuusage() {
+	availCPU=$(mpstat 1 1 | tail -n 1 | awk '{print $NF}')
+	usage=$(echo "(100 - ${availCPU})" | bc)
+	[ $( echo "${usage} == 0" | bc ) -eq 1 ] && echo "0.00%"
+	[ $( echo "${usage} > 0 && ${usage} < 1" | bc ) -eq 1 ] && echo "0${usage}%"
+	[ $( echo "${usage} >= 1" | bc ) -eq 1 ] && echo "${usage}%"
+}
+
+wifi() {
+	nmcli | head -n 1 | awk -F ": " '{print $2}'
+}
+
+battery() {
+	LEVEL="$(acpi -b | grep -v "unavailable" | awk -F "," '{print $2}' | cut -d "%" -f1 | cut -d " " -f2)"
+	STAT="$(acpitool | head -n 1 | awk '{print $4}')"
+	if [[ $STAT == "Discharging," || $STAT == "Full," ]]
+	then
+		if [[ $LEVEL -gt 95 ]]
+		then
+			SYM=" "
+		elif [[ $LEVEL -gt 65 ]]
+		then
+			SYM=" "
+		elif [[ $LEVEL -gt 45 ]]
+		then
+			SYM=" "
+		elif [[ $LEVEL -gt 15 ]]
+		then
+			SYM=" "
+		elif [[ $LEVEL -le 15 ]]
+		then
+			SYM=" "
+		fi
+	elif [[ $STAT == "Charging," || $STAT == "Not," ]]
+	then
+		SYM=" "
+	fi
+	echo "${SYM}${LEVEL}%"
+}
+
+brightness() {
+	 BRI="$(brightnessctl | grep Current | cut -d "(" -f2 | cut -d "%" -f1)"
+	 echo " ${BRI}%"
+}
+
+volume() {
+	GETVOL="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $5}' | cut -d '%' -f1 | cut -d '[' -f2)"
+	MUTED="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $6}' | cut -d ']' -f1 | cut -d '[' -f2)"
+	if [[ $MUTED != "on" ]]
+	then
+		echo " "
+	else
+		if [[ $GETVOL -gt 70 ]]
+		then
+			SYM=" "
+		elif [[ $GETVOL -ge 30 ]]
+		then
+			SYM=" "
+		elif [[ $GETVOL -ge 0 ]]
+		then
+			SYM=" "
+		fi
+		echo "${SYM}${GETVOL}%"
+	fi
+}
+
+spotify() {
+	SONG=$(spotify-tui playback 2>/dev/null | awk -F " " '{print $NF}')
+	STATUS=$(echo $SONG | awk '{print $1}')
+	case "$STATUS" in
+	  契) echo "  $(echo $SONG | awk -F "契" '{print $NF}') "; exit 0 ;;
+	  *) echo ""; exit 0 ;;
+	esac
+}
+
+stat() {
+	# echo " ${SPO} ${VOL}  ${BRI}  ${BAT}   ${WIFI}   ${CPU}   ${MEM}   ${TIME} "
+	echo " $(spotify) $(volume)  $(brightness)  $(battery)   $(wifi)   $(cpuusage)  $(cputemp)   $(memoryusage)   $(datentime) "
 }
 
 while true; do
-		MEM=$(/home/egemen/.local/bin/memory.sh)
-		BAT=$(/home/egemen/.local/bin/battery.sh)
-		CPU=$(/home/egemen/.local/bin/cpu_usage.pl)
-		VOL=$(/home/egemen/.local/bin/volume.sh)
-		WIFI=$(/home/egemen/.local/bin/wifi.sh)
-		BRI=$(/home/egemen/.local/bin/brightness.sh)
-		SPO=$(/home/egemen/.local/bin/spotify.sh)
-#		SPOT=$(/home/egemen/.local/bin/spotify.sh)
-		DATE=$(date +%d/%m/%Y)
-		TIME=$(date "+%d %b, %H:%M")
-#		xsetroot -name " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
-		xsetroot -name "$(status)"
-		sleep 10
+	# MEM=$(/home/egemen/.local/bin/memory.sh)
+	# BAT=$(/home/egemen/.local/bin/battery.sh)
+	# CPU=$(/home/egemen/.local/bin/cpu_usage.pl)
+	# VOL=$(/home/egemen/.local/bin/volume.sh)
+	# WIFI=$(/home/egemen/.local/bin/wifi.sh)
+	# BRI=$(/home/egemen/.local/bin/brightness.sh)
+	# SPO=$(/home/egemen/.local/bin/spotify.sh)
+	# DATE=$(date +%d/%m/%Y)
+	# TIME=$(date "+%d %b, %H:%M")
+# 	# xsetroot -name " ${VOL} | ${BRI} | ${BAT} |  ${WIFI} |  ${CPU} |  ${MEM} |  ${TIME} "
+	# xsetroot -name "$(status)"
+	xsetroot -name "$(stat)"
+	sleep 5
 done
