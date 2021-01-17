@@ -20,6 +20,7 @@ done
 FILE_NAME="${FILE}.png"
 
 scrot ${FILE_NAME}
+cat ${FILE_NAME} | xclip -i -selection clipboard -t image/png
 
 notify-send -i "$FILE_NAME" \
 			"Screenshot saved as
