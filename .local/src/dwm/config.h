@@ -88,7 +88,7 @@ static const char *mutevol[]    = { "amixer", "-q", "set", "Master", "toggle", "
 static const char *incbri[]     = { "brightnessctl", "set", "10%+", "&&", "/home/egemen/.local/bin/dwm-bar", NULL };
 static const char *decbri[]     = { "brightnessctl", "--min-value=750", "set", "10%-", "/home/egemen/.local/bin/dwm-bar", NULL };
 static const char *vboxcmd[]    = { "virtualbox", NULL };
-static const char *playcmd[]    = { "playerctl", "--player=spotify,%any", "play-pause", NULL };
+static const char *playcmd[]    = { "playerctl", "--player=spotifyd,%any", "play-pause", NULL };
 
 static Key keys[] = {
 	/* modifier         key                      function        argument */
