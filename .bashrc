@@ -203,3 +203,4 @@ alias adcp='/home/egemen/Docking/ADFRsuite-1.0/bin/adcp'
 # alias dotfiles='/usr/bin/git --git-dir=/home/egemen/.dotfiles/ --work-tree=/home/egemen'
 alias trdocumentation='/usr/bin/git --git-dir=/home/egemen/Documents/.trdocumentation/ --work-tree=/home/egemen/Documents'
 alias debdots='/usr/bin/git --git-dir=/home/egemen/.debdots/ --work-tree=/home/egemen'
+source "$HOME/.cargo/env"

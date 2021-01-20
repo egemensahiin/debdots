@@ -5,11 +5,11 @@ datentime() {
 }
 
 memoryusage() {
-total=$(free | grep Mem | awk '{print $2}')
-used=$(free | grep Mem | awk '{print $3}')
-buffCache=$(free | grep Mem | awk '{print $5}')
-totUsed=$((used + buffCache))
-echo "Total: $total
+	total=$(free | grep Mem | awk '{print $2}')
+	used=$(free | grep Mem | awk '{print $3}')
+	buffCache=$(free | grep Mem | awk '{print $5}')
+	totUsed=$((used + buffCache))
+	echo "Total: $total
 Used:  $totUsed" | awk '
 /^Total:/ {
   mem_total=$2
@@ -55,11 +55,11 @@ else {
 
 cputemp() {
 	TEMP=$(acpi -t | awk '{print $4}')
-	[[ $(echo "$TEMP < 45" | bc) -eq 1 ]] && SYM=""
-	[[ $(echo "$TEMP < 55 && $TEMP > 45" | bc) -eq 1 ]] && SYM=""
-	[[ $(echo "$TEMP < 70 && $TEMP > 55" | bc) -eq 1 ]] && SYM=""
-	[[ $(echo "$TEMP < 80 && $TEMP > 70" | bc) -eq 1 ]] && SYM=""
-	[[ $(echo "$TEMP > 80" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP <= 45" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP <= 55 && $TEMP > 45" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP <= 70 && $TEMP > 55" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP <= 80 && $TEMP > 70" | bc) -eq 1 ]] && SYM=""
+	[[ $(echo "$TEMP >= 80" | bc) -eq 1 ]] && SYM=""
 	echo "${SYM} ${TEMP}°C"
 }
 
@@ -130,11 +130,16 @@ volume() {
 }
 
 spotify() {
+#	# for client
+#	SONG_CODE=$(xdotool search --class Spotify | head -n 1)
+#	SONG_NAME=$(xdotool getwindowname ${SONG_CODE})
+#	[[ $SONG_NAME != "" && $SONG_NAME != "Spotify Premium" ]] && echo "  ${SONG_NAME} "
+	# for tui
 	SONG=$(spotify-tui playback 2>/dev/null | awk -F " " '{print $NF}')
 	STATUS=$(echo $SONG | awk '{print $1}')
 	case "$STATUS" in
-	  契) echo "  $(echo $SONG | awk -F "契" '{print $NF}') "; exit 0 ;;
-	  *) echo ""; exit 0 ;;
+	  契) echo "  $(echo $SONG | awk -F "契" '{print $NF}') ";;
+	  *) echo "";;
 	esac
 }
 

@@ -213,3 +213,4 @@ export PATH="${PATH}:/home/egemen/.local/bin:/home/egemen/.local/src/clevo-keybo
 export QT_QPA_PLATFORMTHEME=gtk2
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export RUST_BACKTRACE=1
