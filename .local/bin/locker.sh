@@ -33,16 +33,17 @@ i3lock 	-e -i $PIC \
 		--layout-font=Inconsolata \
 		--verif-font=Inconsolata \
 		--wrong-font=Inconsolata \
-		--greeter-font=Inconsolata \
+		--greeter-font="Inconsolata Nerd Font" \
+		--greetersize=75 \
 		--noinputtext="No Input" \
 		--locktext="Locking" \
 		--veriftext="Verifying" \
 		--wrongtext="Wrong!" \
 		--lockfailedtext="Lock Failed!" \
-		--greetertext="Locked" \
-		--greeterpos="960:580" \
-		--datepos="960:550" \
-		--timepos="960:530" \
+		--greetertext="" \
+		--greeterpos="955:605" \
+		--datepos="960:545" \
+		--timepos="960:525" \
 		--radius=100 \
 		--ring-width 3.0 \
 		--indicator
