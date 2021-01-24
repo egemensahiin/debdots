@@ -32,6 +32,7 @@ static const Rule rules[] = {
 	{ "Gimp",        			  NULL,       NULL,      	1 << 4,       0,           -1 },
 	{ "Pavucontrol", 			  NULL,       NULL,      	0,            1,           -1 },
 	{ "Firefox",     			  NULL,       NULL,      	1 << 1,       0,           -1 },
+	{ "qutebrowser", 			  NULL,       NULL,      	1 << 1,       0,           -1 },
 	{ "discord",     			  NULL,       NULL,      	1 << 6,       0,           -1 },
 	{ "PyMOL",	     			  NULL,       NULL,      	1 << 7,       0,           -1 },
 	{ "Mpv",	     			  NULL,       NULL,      	1 << 4,       0,           -1 },
@@ -75,20 +76,22 @@ static const char *codecmd[]    = { "codium", NULL };
 static const char *vimcmd[]     = { "st", "-e", "vim", NULL };
 static const char *sptcmd[]     = { "st", "-e", "spotify-tui", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
-static const char *browsecmd[]  = { "primusrun", "firefox", NULL };
+static const char *firefoxcmd[] = { "primusrun", "firefox", NULL };
+static const char *browsecmd[]  = { "qutebrowser", NULL };
 static const char *audiocmd[]   = { "pavucontrol", NULL };
 static const char *officecmd[]  = { "libreoffice", NULL };
+static const char *mendelcmd[]  = { "mendeleydesktop", NULL };
 static const char *gimpcmd[]    = { "primusrun", "gimp", NULL };
 static const char *locker[]     = { "/home/egemen/.local/bin/locker.sh", NULL };
 static const char *power[]      = { "/home/egemen/.local/bin/powermenu.sh", NULL };
 static const char *screenshot[] = { "/home/egemen/.local/bin/screenshot.sh", NULL };
-static const char *incvol[]     = { "amixer", "set", "Master", "5%+", "&&", "/home/egemen/.local/bin/dwm-bar", NULL  };
-static const char *decvol[]     = { "amixer", "set", "Master", "5%-", "&&", "/home/egemen/.local/bin/dwm-bar", NULL  };
-static const char *mutevol[]    = { "amixer", "-q", "set", "Master", "toggle", "&&", "/home/egemen/.local/bin/dwm-bar", NULL  };
-static const char *incbri[]     = { "brightnessctl", "set", "10%+", "&&", "/home/egemen/.local/bin/dwm-bar", NULL };
-static const char *decbri[]     = { "brightnessctl", "--min-value=750", "set", "10%-", "/home/egemen/.local/bin/dwm-bar", NULL };
+static const char *incvol[]     = { "amixer", "set", "Master", "5%+", NULL  };
+static const char *decvol[]     = { "amixer", "set", "Master", "5%-", NULL  };
+static const char *mutevol[]    = { "amixer", "-q", "set", "Master", "toggle", NULL  };
+static const char *incbri[]     = { "brightnessctl", "set", "10%+", "&&", NULL };
+static const char *decbri[]     = { "brightnessctl", "--min-value=750", "set", "10%-", NULL };
 static const char *vboxcmd[]    = { "virtualbox", NULL };
-static const char *playcmd[]    = { "playerctl", "--player=spotify,%any", "play-pause", NULL };
+static const char *playcmd[]    = { "playerctl", "--player=spotifyd,%any", "play-pause", NULL };
 
 static Key keys[] = {
 	/* modifier         key                      function        argument */
@@ -98,6 +101,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_a,                    spawn,          {.v = audiocmd } },
 	{ MODKEY,           XK_g,                    spawn,          {.v = gimpcmd } },
 	{ MODKEY,           XK_b,                    spawn,          {.v = browsecmd } },
+	{ MODKEY,           XK_f,                    spawn,          {.v = firefoxcmd } },
 	{ MODKEY,           XK_v,                    spawn,          {.v = vimcmd } },
 	{ MODKEY,           XK_s,                    spawn,          {.v = sptcmd } },
 	{ MODKEY,           XK_r,                    spawn,          {.v = rangercmd } },
@@ -105,6 +109,7 @@ static Key keys[] = {
 	{ MODKEY,           XK_x,                    spawn,          {.v = locker } },
 	{ MODKEY,           XK_o,                    spawn,          {.v = vboxcmd } },
 	{ MODKEY,           XK_n,                    spawn,          {.v = officecmd } },
+	{ MODKEY,           XK_m,                    spawn,          {.v = mendelcmd } },
 	{ 0,                XF86XK_AudioLowerVolume, spawn,          {.v = decvol } },
 	{ 0,                XF86XK_AudioPlay, 		 spawn,          {.v = playcmd } },
 	{ 0,                XF86XK_AudioMute,        spawn,          {.v = mutevol } },
@@ -127,9 +132,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, XK_Return,               zoom,           {0} },
 	{ MODKEY,           XK_Tab,                  view,           {0} },
 	{ MODKEY|ShiftMask, XK_q,                    killclient,     {0} },
-	{ MODKEY,           XK_t,                    setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,           XK_f,                    setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,           XK_m,                    setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask, XK_t,                    setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask, XK_f,                    setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask, XK_m,                    setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,           XK_space,                setlayout,      {0} },
 	{ MODKEY|ShiftMask, XK_space,                togglefloating, {0} },
 	{ MODKEY,           XK_0,                    view,           {.ui = ~0 } },

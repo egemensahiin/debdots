@@ -13,9 +13,35 @@
 # Type: Int
 c.history_gap_interval = 30
 
+# Backend to use to display websites. qutebrowser supports two different
+# web rendering engines / backends, QtWebKit and QtWebEngine. QtWebKit
+# was discontinued by the Qt project with Qt 5.6, but picked up as a
+# well maintained fork: https://github.com/annulen/webkit/wiki -
+# qutebrowser only supports the fork. QtWebEngine is Qt's official
+# successor to QtWebKit. It's slightly more resource hungry than
+# QtWebKit and has a couple of missing features in qutebrowser, but is
+# generally the preferred choice.
+# Type: String
+# Valid values:
+#   - webengine: Use QtWebEngine (based on Chromium).
+#   - webkit: Use QtWebKit (based on WebKit, similar to Safari).
+c.backend = 'webengine'
+
+# Additional arguments to pass to Qt, without leading `--`. With
+# QtWebEngine, some Chromium arguments (see
+# https://peter.sh/experiments/chromium-command-line-switches/ for a
+# list) will work.
+# Type: List of String
+c.qt.args = ['ppapi-widevine-path=/usr/lib/x86_64-linux-gnu/qt5/plugins/ppapi/libwidevinecdm.so']
+
 # Always restore open sites when qutebrowser is reopened.
 # Type: Bool
 c.auto_save.session = True
+
+# User agent to send. Unset to send the default. Note that the value
+# read from JavaScript is always the global value.
+# Type: String
+c.content.headers.user_agent = None
 
 # Enable JavaScript.
 # Type: Bool
@@ -28,6 +54,18 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
+
+# Enable plugins in Web pages.
+# Type: Bool
+c.content.plugins = True
+
+# Proxy to use. In addition to the listed values, you can use a
+# `socks://...` or `http://...` URL.
+# Type: Proxy
+# Valid values:
+#   - system: Use the system wide proxy.
+#   - none: Don't use any proxy
+c.content.proxy = 'system'
 
 # Number of commands to save in the command history. 0: no history / -1:
 # unlimited
@@ -46,6 +84,13 @@ c.completion.delay = 0
 # Minimum amount of characters needed to update completions.
 # Type: Int
 c.completion.min_chars = 1
+
+# Where to show the downloaded files.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.downloads.position = 'bottom'
 
 # Editor (and arguments) to use for the `open-editor` command. The
 # following placeholders are defined: * `{file}`: Filename of the file
@@ -228,23 +273,23 @@ c.colors.completion.scrollbar.bg = '#181818'
 
 # Background color for the download bar.
 # Type: QssColor
-c.colors.downloads.bar.bg = '#282828'
+c.colors.downloads.bar.bg = '#32302f'
 
 # Color gradient start for download text.
 # Type: QtColor
-c.colors.downloads.start.fg = '#ebdbb2'
+c.colors.downloads.start.fg = '#282828'
 
 # Color gradient start for download backgrounds.
 # Type: QtColor
-c.colors.downloads.start.bg = '#282828'
+c.colors.downloads.start.bg = '#ebdbb2'
 
 # Color gradient end for download text.
 # Type: QtColor
-c.colors.downloads.stop.fg = '#ebdbb2'
+c.colors.downloads.stop.fg = '#282828'
 
 # Color gradient stop for download backgrounds.
 # Type: QtColor
-c.colors.downloads.stop.bg = '#181818'
+c.colors.downloads.stop.bg = '#458588'
 
 # Color gradient interpolation system for download backgrounds.
 # Type: ColorSystem
@@ -265,16 +310,16 @@ c.colors.downloads.error.bg = '#cc241d'
 
 # Font color for hints.
 # Type: QssColor
-c.colors.hints.fg = '#181818'
+c.colors.hints.fg = '#282828'
 
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
 # Type: QssColor
-c.colors.hints.bg = '#f7ca88'
+c.colors.hints.bg = '#ebdbb2'
 
 # Font color for the matched part of hints.
 # Type: QssColor
-c.colors.hints.match.fg = '#d8d8d8'
+c.colors.hints.match.fg = '#458588'
 
 # Text color for the keyhint widget.
 # Type: QssColor
@@ -326,11 +371,11 @@ c.colors.prompts.fg = '#ebdbb2'
 
 # Border used around UI elements in prompts.
 # Type: String
-c.colors.prompts.border = '1px solid gray'
+c.colors.prompts.border = '1px #282828'
 
 # Background color for prompts.
 # Type: QssColor
-c.colors.prompts.bg = '#928374'
+c.colors.prompts.bg = '#282828'
 
 # Background color for the selected item in filename prompts.
 # Type: QssColor
@@ -354,7 +399,7 @@ c.colors.statusbar.insert.bg = '#b8bb26'
 
 # Foreground color of the statusbar in passthrough mode.
 # Type: QssColor
-c.colors.statusbar.passthrough.fg = '#ebdbb2'
+c.colors.statusbar.passthrough.fg = '#282828'
 
 # Background color of the statusbar in passthrough mode.
 # Type: QssColor
@@ -362,11 +407,11 @@ c.colors.statusbar.passthrough.bg = '#458588'
 
 # Foreground color of the statusbar in private browsing mode.
 # Type: QssColor
-c.colors.statusbar.private.fg = '#ebdbb2'
+c.colors.statusbar.private.fg = '#282828'
 
 # Background color of the statusbar in private browsing mode.
 # Type: QssColor
-c.colors.statusbar.private.bg = '#32302f'
+c.colors.statusbar.private.bg = '#ebdbb2'
 
 # Foreground color of the statusbar in command mode.
 # Type: QssColor
@@ -378,11 +423,11 @@ c.colors.statusbar.command.bg = '#282828'
 
 # Foreground color of the statusbar in private browsing + command mode.
 # Type: QssColor
-c.colors.statusbar.command.private.fg = '#ebdbb2'
+c.colors.statusbar.command.private.fg = '#282828'
 
 # Background color of the statusbar in private browsing + command mode.
 # Type: QssColor
-c.colors.statusbar.command.private.bg = '#928374'
+c.colors.statusbar.command.private.bg = '#ebdbb2'
 
 # Foreground color of the statusbar in caret mode.
 # Type: QssColor

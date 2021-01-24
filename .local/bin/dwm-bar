@@ -109,8 +109,8 @@ brightness() {
 }
 
 volume() {
-	GETVOL="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $5}' | cut -d '%' -f1 | cut -d '[' -f2)"
-	MUTED="$(amixer | grep Master -A 6 | tail -n 1 | awk '{print $6}' | cut -d ']' -f1 | cut -d '[' -f2)"
+	MUTED="$(amixer sget Master | tail -n 1 | awk '{print $NF}' | sed 's/.*\[\([^]]*\)\].*/\1/g')"
+	GETVOL=$(amixer sget Master | tail -n 1 | awk -F'[][]' '{print $2}' | cut -d% -f1)
 	if [[ $MUTED != "on" ]]
 	then
 		echo " "
