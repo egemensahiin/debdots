@@ -12,7 +12,9 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'ap/vim-css-color'
+Plug 'jceb/vim-orgmode'
 Plug 'vim-airline/vim-airline'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'hardcoreplayers/gruvbox9'
 Plug 'tpope/vim-commentary'

@@ -208,6 +208,9 @@ alias adcp='/home/egemen/Docking/ADFRsuite-1.0/bin/adcp'
 alias trdocumentation='/usr/bin/git --git-dir=/home/egemen/Documents/.trdocumentation/ --work-tree=/home/egemen/Documents'
 alias debdots='/usr/bin/git --git-dir=/home/egemen/.debdots/ --work-tree=/home/egemen'
 
+# Just for fun:
+alias please='sudo'
+
 # --Exports
 export PATH="${PATH}:/home/egemen/.local/bin:/home/egemen/.local/src/clevo-keyboard-backlight-control"
 export QT_QPA_PLATFORMTHEME=gtk2

@@ -20,7 +20,7 @@ i3lock 	-e -i $PIC \
 		--timecolor=#ebdbb2 \
 		--datecolor=#ebdbb2 \
 		--greetercolor=#ebdbb2 \
-		--ringcolor=#98971a \
+		--ringcolor=#fabd2f \
 		--insidecolor=282828d9 \
 		--keyhlcolor=#b8bb26 \
 		--bshlcolor=#cc241d \

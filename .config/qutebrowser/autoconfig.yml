@@ -3,22 +3,23 @@
 
 config_version: 2
 settings:
-  colors.downloads.bar.bg:
-    global: '#32302f'
-  colors.downloads.start.bg:
-    global: '#ebdbb2'
-  colors.downloads.start.fg:
-    global: '#282828'
-  colors.statusbar.command.private.bg:
-    global: '#ebdbb2'
-  colors.statusbar.command.private.fg:
-    global: '#282828'
-  colors.statusbar.private.bg:
-    global: '#ebdbb2'
-  colors.statusbar.private.fg:
-    global: '#282828'
-  downloads.position:
-    global: bottom
-  qt.args:
+  bindings.commands:
     global:
-    - ppapi-widevine-path=/usr/lib/x86_64-linux-gnu/qt5/plugins/ppapi/libwidevinecdm.so
+      normal:
+        ',gh': open -t https://github.com
+        ',gm': open -t mail.google.com
+        ',od': download-open
+        ',op': open --private
+        ',tr': open -t translate.google.com
+        ',v': spawn mpv {url}
+        ',wa': open -t web.whatsapp.com
+        ',yt': open -t youtube.com
+        ;sap: set content.proxy http://proxy.ankara.edu.tr:3121
+        ;usap: set content.proxy system
+        <Ctrl+q>: null
+        d: null
+        t: open -t
+  colors.hints.match.fg:
+    global: '#458588'
+  colors.messages.warning.fg:
+    global: '#282828'

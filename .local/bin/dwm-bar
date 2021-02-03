@@ -139,6 +139,7 @@ spotify() {
 	STATUS=$(echo $SONG | awk '{print $1}')
 	case "$STATUS" in
 	  契) echo "  $(echo $SONG | awk -F "契" '{print $NF}') ";;
+#	  契) echo " ❮  $(echo $SONG | awk -F "契" '{print $NF}') ❮ ";;
 	  *) echo "";;
 	esac
 }
@@ -146,6 +147,8 @@ spotify() {
 stat() {
 	# echo " ${SPO} ${VOL}  ${BRI}  ${BAT}   ${WIFI}   ${CPU}   ${MEM}   ${TIME} "
 	echo " $(spotify) $(volume)  $(brightness)  $(battery)   $(wifi)   $(cpuusage)  $(cputemp)   $(memoryusage)   $(datentime) "
+	# echo " [$(spotify)] [$(volume)] [$(brightness)] [$(battery)] [ $(wifi)] [ $(cpuusage)] [$(cputemp)] [ $(memoryusage)] [ $(datentime)] "
+	# echo " $(spotify) ┤ $(volume) ├┤ $(brightness) ├┤ $(battery) ├┤  $(wifi) ├┤  $(cpuusage) ├┤ $(cputemp) ├┤  $(memoryusage) ├┤  $(datentime) ├ "
 }
 
 while true; do

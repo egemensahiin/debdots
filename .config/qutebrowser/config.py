@@ -245,7 +245,7 @@ c.colors.completion.category.border.bottom = '#181818'
 
 # Foreground color of the selected completion item.
 # Type: QtColor
-c.colors.completion.item.selected.fg = '#d8d8d8'
+c.colors.completion.item.selected.fg = '#d79921'
 
 # Background color of the selected completion item.
 # Type: QssColor
@@ -289,7 +289,7 @@ c.colors.downloads.stop.fg = '#282828'
 
 # Color gradient stop for download backgrounds.
 # Type: QtColor
-c.colors.downloads.stop.bg = '#458588'
+c.colors.downloads.stop.bg = '#98971a'
 
 # Color gradient interpolation system for download backgrounds.
 # Type: ColorSystem
@@ -343,7 +343,7 @@ c.colors.messages.error.border = '#cc241d'
 
 # Foreground color of a warning message.
 # Type: QssColor
-c.colors.messages.warning.fg = '#ebdbb2'
+c.colors.messages.warning.fg = '#282828'
 
 # Background color of a warning message.
 # Type: QssColor
@@ -395,7 +395,7 @@ c.colors.statusbar.insert.fg = '#282828'
 
 # Background color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.bg = '#b8bb26'
+c.colors.statusbar.insert.bg = '#d79921'
 
 # Foreground color of the statusbar in passthrough mode.
 # Type: QssColor
@@ -403,7 +403,7 @@ c.colors.statusbar.passthrough.fg = '#282828'
 
 # Background color of the statusbar in passthrough mode.
 # Type: QssColor
-c.colors.statusbar.passthrough.bg = '#458588'
+c.colors.statusbar.passthrough.bg = '#98971a'
 
 # Foreground color of the statusbar in private browsing mode.
 # Type: QssColor
@@ -481,11 +481,11 @@ c.colors.tabs.bar.bg = '#32302f'
 
 # Color gradient start for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.start = '#458588'
+c.colors.tabs.indicator.start = '#98971a'
 
 # Color gradient end for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.stop = '#98971a'
+c.colors.tabs.indicator.stop = '#8ec07c'
 
 # Color for the tab indicator on errors.
 # Type: QtColor
@@ -522,7 +522,7 @@ c.colors.tabs.selected.odd.fg = '#282828'
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = '#ebdbb2'
+c.colors.tabs.selected.odd.bg = '#d79921'
 
 # Foreground color of selected even tabs.
 # Type: QtColor
@@ -530,7 +530,7 @@ c.colors.tabs.selected.even.fg = '#282828'
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = '#ebdbb2'
+c.colors.tabs.selected.even.bg = '#d79921'
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
