@@ -202,6 +202,7 @@ alias flipdock='pythonsh /home/egemen/Docking/MGLTools-1.5.7/MGLToolsPckgs/AutoD
 alias prepare_ligand='/home/egemen/Docking/ADFRsuite-1.0/bin/prepare_ligand'
 alias prepare_receptor='/home/egemen/Docking/ADFRsuite-1.0/bin/prepare_receptor'
 alias adcp='/home/egemen/Docking/ADFRsuite-1.0/bin/adcp'
+alias ligplus='java -cp /home/egemen/.local/src/LigPlus/ -jar /home/egemen/.local/src/LigPlus/LigPlus.jar' 
 
 # Aliases for my git bare repos.
 # alias dotfiles='/usr/bin/git --git-dir=/home/egemen/.dotfiles/ --work-tree=/home/egemen'
@@ -217,3 +218,5 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export RUST_BACKTRACE=1
+# to prevent the percentage sign at the end of running C programs
+export PRINT_EOL_MARK=''
