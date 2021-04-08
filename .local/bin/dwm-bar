@@ -76,9 +76,9 @@ wifi() {
 }
 
 battery() {
-	LEVEL="$(acpi -b | grep -v "unavailable" | awk -F "," '{print $2}' | cut -d "%" -f1 | cut -d " " -f2)"
-	STAT="$(acpitool | head -n 1 | awk '{print $4}')"
-	if [[ $STAT == "Discharging," || $STAT == "Full," ]]
+	LEVEL="$(cat /sys/class/power_supply/BAT0/capacity)"
+	STAT="$(cat /sys/class/power_supply/BAT0/status)"
+	if [[ $STAT == "Discharging" || $STAT == "Full" ]]
 	then
 		if [[ $LEVEL -gt 95 ]]
 		then
@@ -96,7 +96,7 @@ battery() {
 		then
 			SYM=" "
 		fi
-	elif [[ $STAT == "Charging," || $STAT == "Not," ]]
+	elif [[ $STAT == "Charging" ]]
 	then
 		SYM=" "
 	fi
@@ -135,7 +135,7 @@ spotify() {
 #	SONG_NAME=$(xdotool getwindowname ${SONG_CODE})
 #	[[ $SONG_NAME != "" && $SONG_NAME != "Spotify Premium" ]] && echo "  ${SONG_NAME} "
 	# for tui
-	SONG=$(spotify-tui playback 2>/dev/null | awk -F " " '{print $NF}')
+	SONG=$(spt playback 2>/dev/null | awk -F " " '{print $NF}')
 	STATUS=$(echo $SONG | awk '{print $1}')
 	case "$STATUS" in
 	  契) echo "  $(echo $SONG | awk -F "契" '{print $NF}') ";;
@@ -146,7 +146,7 @@ spotify() {
 
 stat() {
 	# echo " ${SPO} ${VOL}  ${BRI}  ${BAT}   ${WIFI}   ${CPU}   ${MEM}   ${TIME} "
-	echo " $(spotify) $(volume)  $(brightness)  $(battery)   $(wifi)   $(cpuusage)  $(cputemp)   $(memoryusage)   $(datentime) "
+	echo "  $(volume)  $(brightness)  $(battery)   $(wifi)   $(cpuusage)  $(cputemp)   $(memoryusage)   $(datentime) "
 	# echo " [$(spotify)] [$(volume)] [$(brightness)] [$(battery)] [ $(wifi)] [ $(cpuusage)] [$(cputemp)] [ $(memoryusage)] [ $(datentime)] "
 	# echo " $(spotify) ┤ $(volume) ├┤ $(brightness) ├┤ $(battery) ├┤  $(wifi) ├┤  $(cpuusage) ├┤ $(cputemp) ├┤  $(memoryusage) ├┤  $(datentime) ├ "
 }
