@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/egemen/.gtkrc-2.0.mine"
-gtk-theme-name="Gruvbox-Material-Dark"
-gtk-icon-theme-name="Gruvbox-Material-Dark"
+gtk-theme-name="gruvbox-gtk"
+gtk-icon-theme-name="gruvbox-dark-icons-gtk"
 gtk-font-name="Inconsolata 9"
 gtk-cursor-theme-name="xcursor-breeze"
 gtk-cursor-theme-size=0
