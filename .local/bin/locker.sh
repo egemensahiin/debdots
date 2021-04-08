@@ -13,19 +13,19 @@ i3lock 	-e -i $PIC \
 		--clock \
 		--pass-media-keys --pass-power-keys \
 		--pass-screen-keys --pass-volume-keys \
-		--datestr="%A, %d %m %Y" \
+		--datestr="%A, %b %d %Y" \
 		--linecolor=#282828 \
 		--verifcolor=#ebdbb2 \
 		--wrongcolor=#ebdbb2 \
 		--timecolor=#ebdbb2 \
 		--datecolor=#ebdbb2 \
 		--greetercolor=#ebdbb2 \
-		--ringcolor=#fabd2f \
+		--ringcolor=#b8bb26 \
 		--insidecolor=282828d9 \
 		--keyhlcolor=#b8bb26 \
 		--bshlcolor=#cc241d \
-		--ringvercolor=#458588 \
-		--insidevercolor=83a598d9 \
+		--ringvercolor=#98971a \
+		--insidevercolor=b8bb26d9 \
 		--ringwrongcolor=#cc241d \
 		--insidewrongcolor=fb4934d9 \
 		--time-font=Inconsolata \
